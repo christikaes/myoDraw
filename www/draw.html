@@ -57,7 +57,12 @@
   </style>
 <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
 <meta name="viewport" content="width=device-width" />
-
+<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
 </head>
 
 <body style="max-width: 320px; max-height: 100%;">
@@ -77,11 +82,13 @@
 
   <script type="text/javascript" src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
   <script type="text/javascript" src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>
     // Prevent mobile dragging
     $(document).on('touchstart', function(e) {
-      if (e.target.nodeName !== 'INPUT' && e.target.nodeName !== 'IMG' ) {
+      if (e.target.nodeName !== 'INPUT' && e.target.nodeName !== 'IMG' && e.target.nodeName != 'BUTTON' ) {
         e.preventDefault();
       }
     });
@@ -187,6 +194,9 @@
     userRef.removeOnDisconnect();
 
     $topCanvas.on('mousedown', function(e) {
+        
+       
+        
       newLayer = {
         points: [{x: e.pageX, y: e.pageY}],
         color: $("input[name=brush]:checked").attr('color'),
@@ -249,7 +259,10 @@ function init()
     document.addEventListener("touchstart", touchHandler, true);
     document.addEventListener("touchmove", touchHandler, true);
     document.addEventListener("touchend", touchHandler, true);
-    document.addEventListener("touchcancel", touchHandler, true);    
+    document.addEventListener("touchcancel", touchHandler, true);  
+    
+    
+    
 }
 
 init();
@@ -275,4 +288,37 @@ init();
   });
 
   </script>
+    
+    <h1>Myo Cordova Plugin demo application</h1>
+		<div id="deviceready" class="blink">
+			<p class="event listening">Connecting to Device</p>
+			<p class="event received">Device is Ready</p>
+			<p id="myoConnecting" class="event received hidden">Connecting to Myo...</p>
+			<p id="myoConnected" class="event received hidden">Myo connected: <b id="myoName"></b></p>
+		</div>
+		<br>
+		<div id="myoSensorData" class="margin-left hidden">
+			orientationData &gt; <span id="sensOrientationData"></span><br>
+			accelerometerData &gt; <span id="sensAccelerometerData"></span><br>
+			gyroscopeData &gt; <span id="sensGyroscopeData"></span>
+		</div>
+		<br>
+		<button id="btnAttachLast">Attach to the last Myo used</button>
+		<br><br>
+		<button id="btnAttachClosest">Attach to an adjacent Myo</button>
+		<br><br>
+		<button id="btnScan">Launch the scan dialog</button>
+		<br><br>
+		<button id="btnVibrateMyo">Vibrate the connected Myo</button>
+		<br><br>
+		<button id="btnShowMyo">Show current connected Myo</button>
+		<br><br>
+		<button id="btnListDevices">Show list of connected Myos</button>
+		<br><br>
+		<button id="btnDetach">Detach from current Myo</button>
+		<br><br>
+		<button id="btnShutdown">Shutdown Myo API</button>
+		<br><br>
+		<button id="btnSensorMode">Toggle sensor data</button>
+
 </body>

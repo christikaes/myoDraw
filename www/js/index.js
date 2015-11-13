@@ -175,6 +175,11 @@ var initMyoDemoApp = function(){
 	})
 	.on("rssi", logMyoEvent);
 
+   MyoApi.on("orientationData", function(data){
+      console.log(data);
+       console.log("!");
+   });
+    
 	docElem("btnAttachLast").onclick = function(){
 		console.log("Clicked on attach last button");
 		showUiState("connecting");
@@ -313,6 +318,19 @@ var initMyoDemoApp = function(){
 	};
 
 	showUiState("initial");
+    
+    var fun = function(){
+		console.log("Clicked on attach closest button");
+		checkBluetooth(function(){
+			MyoApi.attachToAdjacentMyo(function(res){
+			console.log("Attach command sent: " + res);
+			}, function(err){
+				console.log("ERROR sending attach command: " + err);
+			});
+		});
+	};
+    
+
 
 };
 

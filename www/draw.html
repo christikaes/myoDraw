@@ -30,7 +30,7 @@
     #toolbar {
       position: absolute;
       top: 0;
-      width: 800px;
+      width: 400px;
       z-index: 4;
       margin: 1px;
       padding: 3px;
@@ -61,8 +61,8 @@
 </head>
 
 <body style="max-width: 320px; max-height: 100%;">
-  <canvas id="bottom" width="800" height="400"></canvas>
-  <canvas id="top" width="800" height="400"></canvas>
+  <canvas id="bottom" width="400" height="700"></canvas>
+  <canvas id="top" width="400" height="700"></canvas>
 
   <div id="toolbar">
     <span id="clear" hotkey="67"><img src="images/clear.png"></span>
@@ -88,8 +88,8 @@
 
   $(document).ready(function() {
 
-    var width = 800;
-    var height = 400;
+    var width = 400;
+    var height = 700;
 
     var rootRef = new Firebase('https://myodraw.firebaseio.com/');
 
